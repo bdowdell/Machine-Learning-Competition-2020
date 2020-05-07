@@ -1,18 +1,12 @@
-During the months of March - May 2020, the SPWLA PDDA held a contest to predict DTC & DTS logs using a suite of other typically acquired well logs.
+Between March 1 - April 30& 2020, the SPWLA PDDA held a contest to predict DTC & DTS logs using a suite of other typically acquired well logs.
 
 This repository tracks my work.  It was private until after the contest concluded.  Now it is open to the public!
 
-The notebook [datadrivenpancakes_solution_submission_3.ipynb](https://github.com/bdowdell/Machine-Learning-Competition-2020/blob/master/nb/datadrivenpancakes_solution_submission_3.ipynb) is my best solution, which finished $13^th$ out of 31 entrants.
+The notebook [datadrivenpancakes_solution_submission_3.ipynb](https://github.com/bdowdell/Machine-Learning-Competition-2020/blob/master/nb/datadrivenpancakes_solution_submission_3.ipynb) is my best solution, which finished 13 out of 31 entrants.
 
 The objective was to minimize Root Mean Squared Error (RMSE).
 
 My final submission consists of an average ensemble of a RandomForestRegressor, GradientBoostingRegressor, XGBRegressor, SVR, & KNeighborsRegressor.  The RMSE on the blind prediction data is **16.31731**.
-
-The final model:
-
-$$
-\hat{{y}}_{ensemble} = \frac{ {\hat{y}}_{RFR} + {\hat{y}}_{GBR} + {\hat{y}}_{XGBR} + {\hat{y}}_{SVR} + {\hat{y}}_{KNR} }{ 5 }
-$$
 
 ---
 
