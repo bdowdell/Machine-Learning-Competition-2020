@@ -72,8 +72,8 @@ def plot_well_curves(df):
         else:
             ax.set_title(curve)
         ax.xaxis.tick_top()
-    ax.invert_yaxis()
-    fig.text(0.45, 0.5, 'Sample', va='center', rotation='vertical', fontdict={'color': 'r'})
+    axes[0].invert_yaxis() # using sharey=True will invert y-axis for all plots
+    axes[0].set_ylabel('Depth', fontdict={'fontsize': 20})
     return fig
 
 
