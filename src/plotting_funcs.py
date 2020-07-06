@@ -31,10 +31,10 @@ def plot_distributions(df):
         n_rows += n_subplots % n_cols
         n_blank = (n_rows * n_cols) - n_subplots
         flag = 1
-    fig, axes = plt.subplots(nrows=n_rows, n_cols=n_cols, figsize=(12, 8))
+    fig, axes = plt.subplots(nrows=n_rows, ncols=n_cols, figsize=(12, 8))
     if flag == 1:
         axes[-1, -n_blank].axis('off')
-    for ax, col in zip(axes.flaten(), df.columns.tolist()):
+    for ax, col in zip(axes.flatten(), df.columns.tolist()):
         ax.hist(df[col])
         if 'HR' in col:
             ax.set_xscale('log')
@@ -72,7 +72,7 @@ def plot_well_curves(df):
         else:
             ax.set_title(curve)
         ax.xaxis.tick_top()
-    axes.invert_yaxis()
+    ax.invert_yaxis()
     fig.text(0.45, 0.5, 'Sample', va='center', rotation='vertical', fontdict={'color': 'r'})
     return fig
 
