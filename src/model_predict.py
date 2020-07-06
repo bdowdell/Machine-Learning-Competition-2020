@@ -90,4 +90,4 @@ outfile = input_file.split('/')[1] # Get the file name after the directory
 outfile = outfile.split('.')[0] # remove the file type at the end
 outfile_name = output_dir + outfile + '_pred.csv'
 print('Writing results to: {}'.format(outfile_name))
-df.to_csv(outfile_name)
+df.to_csv(outfile_name, index=False)
