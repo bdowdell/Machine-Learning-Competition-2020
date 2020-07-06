@@ -57,7 +57,7 @@ def plot_well_curves(df):
     curve_names = df.columns.tolist()
 
     # create the figure
-    fig, axes = plt.subplots(nrows=1, ncols=len(curve_names), sharey=True, figsize=(20, 10))
+    fig, axes = plt.subplots(nrows=1, ncols=len(curve_names), sharey='all', figsize=(20, 10))
     fig.suptitle('Well Log Panel', fontsize=20)
     for ax, curve in zip(axes, curve_names):
         if curve in ['HRD', 'HRM']:
@@ -72,7 +72,7 @@ def plot_well_curves(df):
         else:
             ax.set_title(curve)
         ax.xaxis.tick_top()
-    axes[0].invert_yaxis() # using sharey=True will invert y-axis for all plots
+    axes[0].invert_yaxis()  # using sharey=True will invert y-axis for all plots
     axes[0].set_ylabel('Depth', fontdict={'fontsize': 20})
     return fig
 
