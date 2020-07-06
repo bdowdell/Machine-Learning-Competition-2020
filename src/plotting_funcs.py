@@ -3,7 +3,6 @@
 # Contains functions for plotting well data in various ways
 
 # Imports
-import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 
