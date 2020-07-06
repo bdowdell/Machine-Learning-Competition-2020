@@ -110,19 +110,19 @@ def plot_vp_vs(x='DTC', y='DTS', color='index', df=None):
             color_mapping[key] = df[key]
 
     Vs_castagna_ls = np.multiply(-0.05508, np.power(xvp, 2)) + np.multiply(1.0168, xvp) - 1.0305
-    Vs_castanga_dm = np.multiply(0.5832, xvp) - 0.07776
+    Vs_castagna_dm = np.multiply(0.5832, xvp) - 0.07776
     Vs_castagna_mudrock = np.multiply(0.8621, xvp) - 1.1724
     Vs_castanga_ss = np.multiply(0.8042, xvp) - 0.8559
 
     fig = plt.figure(figsize=(14, 8))
     ax = fig.add_subplot(1, 1, 1)
     ax.plot(Vs_castagna_ls, xvp, '--b', lw=2, label='Castagna et al. (1993) Water-Saturated Limestone')
-    ax.plot(Vs_castanga_dm, xvp, '--c', lw=2, label='Castagna et al. (1993) Water-Saturated Dolomite')
+    ax.plot(Vs_castagna_dm, xvp, '--c', lw=2, label='Castagna et al. (1993) Water-Saturated Dolomite')
     ax.plot(Vs_castagna_mudrock, xvp, '--k', lw=2, label='Castagna et al. (1993) Mudrock line')
     ax.plot(Vs_castanga_ss, xvp, '--r', lw=2, label='Castagna et al. (1993) Water-Saturated Stone')
     im = ax.scatter(vs_km_s, vp_km_s, s=10, c=color_mapping[color], marker='.', cmap='inferno', alpha=0.8)
     ax.set_xlabel('Vs (km/s)')
-    ax.set_ylabel('Vs (km/s)')
+    ax.set_ylabel('Vp (km/s)')
     ax.set_title('Vp vs. Vs', fontsize=20, fontweight='bold')
     ax.set_xlim([np.nanmin(vs_km_s), np.nanmax(vs_km_s)])
     ax.set_ylim([np.nanmin(vp_km_s), np.nanmax(vp_km_s)])
