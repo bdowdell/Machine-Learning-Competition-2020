@@ -71,10 +71,12 @@ def iqr_filter(data):
     Takes a DataFrame containing well log data and filters outliers using Interquartile Range
     
     Parameters:
-    data (pandas.DataFrame) : The input data to be filtered.  Each column should be a well log curve
+    data, pandas.DataFrame
+        The input data to be filtered.  Each column should be a well log curve
 
     Returns:
-    df_filt (pandas.DataFrame) : The filtered well curvess
+    df_filt, pandas.DataFrame
+        The filtered well curves
     """
     # create a copy of the original data
     df_copy = data.copy()
