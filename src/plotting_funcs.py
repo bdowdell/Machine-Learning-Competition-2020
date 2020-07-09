@@ -110,7 +110,7 @@ def plot_well_curves(df, hist=True):
         curves = df.columns.tolist()
         for i, ax in enumerate(axes.flatten()):
             if i < start_row_two:
-                if curves[i] in ['HRD', 'HRD']:
+                if curves[i] in ['HRD', 'HRM']:
                     ax.semilogx(df[curves[i]], df.index, color='k')
                 else:
                     ax.plot(df[curves[i]], df.index, color='k')
