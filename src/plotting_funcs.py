@@ -4,7 +4,34 @@
 
 # Imports
 import numpy as np
+import pandas as pd
 import matplotlib.pyplot as plt
+
+
+def iqr_filter(data):
+    """
+    Takes a DataFrame containing well log data and filters outliers using Interquartile Range
+
+    Parameters:
+    data, pandas.DataFrame
+        The input data to be filtered.  Each column should be a well log curve
+
+    Returns:
+    df_filt, pandas.DataFrame
+        The filtered well curves
+    """
+    # create a copy of the original data
+    df_copy = data.copy()
+    # create a data frame containing the cleaned version of the data using IQR
+    df_filt = pd.DataFrame(index=df_copy.index)
+    # filter each column
+    for col in df_copy.columns.tolist():
+        q1 = df_copy[col].quantile(0.25)
+        q3 = df_copy[col].quantile(0.75)
+        IQR = q3 - q1
+        iqr_filt = (df_copy[col] >= q1 - 1.5 * IQR) & (df_copy[col] <= q3 + 1.5 * IQR)
+        df_filt[col] = df_copy[col].loc[iqr_filt]
+    return df_filt
 
 
 def plot_distributions(df):
