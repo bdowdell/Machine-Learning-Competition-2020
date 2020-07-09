@@ -70,11 +70,15 @@ def plot_distributions(df):
     return fig
 
 
-def plot_well_curves(df):
+def plot_well_curves(df, hist=True):
     """
     Plots well curves from an input data frame containing data
     Args:
-        df: pandas.DataFrame containing well logs, one log per column
+        df: pandas.DataFrame,
+            containing well logs, one log per column
+
+        hist: bool,
+            Whether or not to plot curve histogram at bottom of log plot
 
     Returns:
         matplotlib.pyplot.figure.Figure
@@ -83,24 +87,60 @@ def plot_well_curves(df):
     # get the column names as a list
     curve_names = df.columns.tolist()
 
+    # check whether plots should include a histogram
+    n_rows = 1
+    if hist:
+        n_rows = 2
+
     # create the figure
-    fig, axes = plt.subplots(nrows=1, ncols=len(curve_names), sharey='all', figsize=(20, 10))
+    if hist:
+        fig, axes = plt.subplots(
+            nrows=n_rows,
+            ncols=len(curve_names),
+            sharey='row',
+            figsize=(20, 12),
+            gridspec_kw={'height_ratios': [4, 1]}
+        )
+    else:
+        fig, axes = plt.subplots(nrows=n_rows, ncols=len(curve_names), sharey='row', figsize=(28, 10))
     fig.suptitle('Well Log Panel', fontsize=20)
-    for ax, curve in zip(axes, curve_names):
-        if curve in ['HRD', 'HRM']:
-            ax.semilogx(df[curve], df.index, color='k')
-        else:
-            ax.plot(df[curve], df.index, color='k')
-        if curve == 'CNC':
-            ax.set_xlim(0.0, 1.0)
-        if curve in ['DTC', 'DTS'] or 'DT' in curve:
-            ax.set_title(curve, fontdict={'color': 'r'})
-            ax.invert_xaxis()
-        else:
-            ax.set_title(curve)
-        ax.xaxis.tick_top()
-    axes[0].invert_yaxis()  # using sharey=True will invert y-axis for all plots
-    axes[0].set_ylabel('Depth', fontdict={'fontsize': 20})
+    if hist:
+        num_plots = n_rows * len(curve_names)
+        start_row_two = int(num_plots / 2)
+        curves = df.columns.tolist()
+        for i, ax in enumerate(axes.flatten()):
+            if i < start_row_two:
+                if curves[i] in ['HRD', 'HRD']:
+                    ax.semilogx(df[curves[i]], df.index, color='k')
+                else:
+                    ax.plot(df[curves[i]], df.index, color='k')
+                if curves[i] == 'CNC':
+                    ax.set_xlim(0.0, 1.0)
+                if curves[i] in ['DTC', 'DTS'] or 'DT' in curves[i]:
+                    ax.set_title(curves[i], fontdict={'color': 'r'})
+                    ax.invert_xaxis()
+                else:
+                    ax.set_title(curves[i])
+                ax.xaxis.tick_top()
+            else:
+                ax.hist(df[curves[i - start_row_two]].dropna())
+    else:
+        for ax, curve in zip(axes, curve_names):
+            if curve in ['HRD', 'HRM']:
+                ax.semilogx(df[curve], df.index, color='k')
+            else:
+                ax.plot(df[curve], df.index, color='k')
+            if curve == 'CNC':
+                ax.set_xlim(0.0, 1.0)
+            if curve in ['DTC', 'DTS'] or 'DT' in curve:
+                ax.set_title(curve, fontdict={'color': 'r'})
+                ax.invert_xaxis()
+            else:
+                ax.set_title(curve)
+            ax.xaxis.tick_top()
+    axes[0, 0].invert_yaxis()  # using sharey=True will invert y-axis for all plots
+    axes[0, 0].set_ylabel('Depth', fontdict={'fontsize': 20})
+    plt.tight_layout(rect=[0, 0.03, 1, 0.95])
     return fig
 
 
