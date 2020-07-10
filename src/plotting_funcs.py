@@ -187,7 +187,10 @@ def plot_vp_vs(x='DTC', y='DTS', color='index', df=None):
     ax.plot(Vs_castagna_dm, xvp, '--c', lw=2, label='Castagna et al. (1993) Water-Saturated Dolomite')
     ax.plot(Vs_castagna_mudrock, xvp, '--k', lw=2, label='Castagna et al. (1993) Mudrock line')
     ax.plot(Vs_castagna_ss, xvp, '--r', lw=2, label='Castagna et al. (1993) Water-Saturated Stone')
-    im = ax.scatter(vs_km_s, vp_km_s, s=10, c=color_mapping[color], marker='.', cmap='inferno', alpha=0.8)
+    if color in ['GR', 'ZDEN', 'CNC', 'PE']:
+        im = ax.scatter(vs_km_s, vp_km_s, s=10, c=color_mapping[color], marker='.', cmap='inferno_r', alpha=0.8)
+    else:
+        im = ax.scatter(vs_km_s, vp_km_s, s=10, c=color_mapping[color], marker='.', cmap='inferno', alpha=0.8)
     ax.set_xlabel('Vs (km/s)')
     ax.set_ylabel('Vp (km/s)')
     ax.set_title('Vp vs. Vs', fontsize=20, fontweight='bold')
