@@ -173,7 +173,7 @@ f.write('Random Forest Test RMSE: {:.4f}\n'.format(rmse(y_test, pipe_rfr_pca.pre
 print('Saving fitted model ...')
 f.write('Saving fitted model ...\n')
 rfr_pickle = output_dir + 'rfr_fitted.joblib'
-joblib.dump(pipe_rfr_pca, rfr_pickle)
+joblib.dump(pipe_rfr_pca, rfr_pickle, compress=3)
 print('Fitted model saved: {}\n\n'.format(rfr_pickle))
 f.write('Fitted model saved: {}\n\n'.format(rfr_pickle))
 
@@ -212,7 +212,7 @@ f.write('Gradient Boosted Test RMSE: {:.4f}\n'.format(rmse(y_test, pipe_gbr_pca.
 print('Saving fitted model ...')
 f.write('Saving fitted model ...\n')
 gbr_pickle = output_dir + 'gbr_fitted.joblib'
-joblib.dump(pipe_gbr_pca, gbr_pickle)
+joblib.dump(pipe_gbr_pca, gbr_pickle, compress=3)
 print('Fitted model saved: {}\n\n'.format(gbr_pickle))
 f.write('Fitted model saved: {}\n\n'.format(gbr_pickle))
 
@@ -249,7 +249,7 @@ f.write('XGBoost Test RMSE: {:.4f}\n'.format(rmse(y_test, pipe_xgbr_pca.predict(
 print('Saving fitted model ...')
 f.write('Saving fitted model ...\n')
 xgbr_pickle = output_dir + 'xgbr_fitted.joblib'
-joblib.dump(pipe_xgbr_pca, xgbr_pickle)
+joblib.dump(pipe_xgbr_pca, xgbr_pickle, compress=3)
 print('Fitted model saved: {}\n\n'.format(xgbr_pickle))
 f.write('Fitted model saved: {}\n\n'.format(xgbr_pickle))
 
@@ -282,7 +282,7 @@ f.write('PCR Test RMSE: {:.4f}\n'.format(rmse(y_test, pipe_pcr_svr.predict(X_tes
 print('Saving fitted model ...')
 f.write('Saving fitted model ...\n')
 pcr_pickle = output_dir + 'pcr_fitted.joblib'
-joblib.dump(pipe_pcr_svr, pcr_pickle)
+joblib.dump(pipe_pcr_svr, pcr_pickle, compress=3)
 print('Fitted model saved: {}\n\n'.format(pcr_pickle))
 f.write('Fitted model saved: {}\n\n'.format(pcr_pickle))
 
@@ -309,7 +309,7 @@ f.write('KNN Test RMSE: {:.4f}\n'.format(rmse(y_test, pipe_knn.predict(X_test)))
 print('Saving fitted model ...')
 f.write('Saving fitted model ...\n')
 knn_pickle = output_dir + 'knn_fitted.joblib'
-joblib.dump(pipe_knn, knn_pickle)
+joblib.dump(pipe_knn, knn_pickle, compress=3)
 print('Fitted model saved: {}\n\n'.format(knn_pickle))
 f.write('Fitted model saved: {}\n\n'.format(knn_pickle))
 
